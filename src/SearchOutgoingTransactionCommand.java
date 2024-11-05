@@ -3,6 +3,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class SearchOutgoingTransactionCommand extends Command {
@@ -10,6 +11,7 @@ public class SearchOutgoingTransactionCommand extends Command {
         super("Search outgoing transaction", transactionManager);
     }
 
+    //Using annotation
     @Override
     public void execute(Scanner scanner) {
         System.out.println("Do you want to search by year, month, week or day?");
@@ -167,7 +169,14 @@ public class SearchOutgoingTransactionCommand extends Command {
         float total = 0f;
 
         for (int i = 0; i < transactionManager.numberOfTransactions(); i++) {
-            Transaction transaction = transactionManager.getTransaction(i);
+            Optional<Transaction> transactionOptional = transactionManager.getTransaction(i);
+
+            if(transactionOptional.isEmpty()) {
+                System.out.println("Something went wrong.");
+                break;
+            }
+
+            Transaction transaction = transactionOptional.get();
 
             if (transaction.getType() == type && !transaction.getDate().isBefore(startDate) && !transaction.getDate().isAfter(endDate)) {
                 //Add transaction amount to total

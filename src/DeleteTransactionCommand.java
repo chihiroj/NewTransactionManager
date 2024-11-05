@@ -1,6 +1,7 @@
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class DeleteTransactionCommand extends Command {
@@ -9,7 +10,7 @@ public class DeleteTransactionCommand extends Command {
         super("Delete transaction", transactionManager);
     }
 
-
+    //Using annotation
     @Override
     public void execute(Scanner scanner) {
         if (transactionManager.hasNoTransactions()) {
@@ -33,7 +34,14 @@ public class DeleteTransactionCommand extends Command {
         boolean foundTransaction = false;
         //Loop through all transactions
         for (int i = 0; i < transactionManager.numberOfTransactions(); i++) {
-            Transaction transaction = transactionManager.getTransaction(i);
+            Optional<Transaction> transactionOptional = transactionManager.getTransaction(i);
+
+            if(transactionOptional.isEmpty()) {
+                System.out.println("Something went wrong.");
+                return;
+            }
+
+            Transaction transaction = transactionOptional.get();
 
             //If transactions date is same as user entered date
             if (transaction.getDate().equals(date)) {
@@ -47,12 +55,12 @@ public class DeleteTransactionCommand extends Command {
 
             System.out.println("Choose the transaction number");
             int selection = -1;
-            Transaction transaction = null;
+            Optional<Transaction> transactionOptional = Optional.empty();
             //Loop until correct users selection
             while (selection == -1) {
                 try {
                     selection = scanner.nextInt();
-                    transaction = transactionManager.getTransaction(selection);
+                    transactionOptional = transactionManager.getTransaction(selection);
                 } catch (InputMismatchException exception) {
                     System.out.println("Enter a valid number");
                 } catch (IndexOutOfBoundsException exception) {
@@ -62,6 +70,13 @@ public class DeleteTransactionCommand extends Command {
                 scanner.nextLine();
             }
 
+            if(transactionOptional.isEmpty()) {
+                System.out.println("Something went wrong.");
+                return;
+            }
+
+            Transaction transaction = transactionOptional.get();
+
             if (transaction.getType() == TransactionType.INCOMING) {
                 transactionManager.decreaseAccountBalance(transaction.getAmount());
             } else if (transaction.getType() == TransactionType.OUTGOING) {
@@ -69,6 +84,7 @@ public class DeleteTransactionCommand extends Command {
             }
 
             transactionManager.deleteTransaction(selection);
+
             System.out.println("The transaction was deleted");
         } else {
             System.out.println("No transactions at this date.");

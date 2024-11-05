@@ -9,6 +9,7 @@ public class AddTransactionCommand extends Command{
         super("Add transaction", transactionManager);
     }
 
+    //Using annotation
     @Override
     public void execute(Scanner scanner) {
         System.out.println("1. Incoming transaction?");
