@@ -21,6 +21,11 @@ public class Main {
         }
     }
 
+    /**
+     * Load all saved transactions
+     * @param transactionSaver The class to use for loading
+     * @param transactionManager Keeps track of all transactions
+     */
     private static void loadTransactions(TransactionSaver transactionSaver, TransactionManager transactionManager) {
         ArrayList<Transaction> transactions = transactionSaver.loadAllSavedTransactions();
         for(int i = 0; i < transactions.size(); i++) {

@@ -6,6 +6,9 @@ import java.util.InputMismatchException;
 import java.util.Optional;
 import java.util.Scanner;
 
+/**
+ * Command to search for outgoing transactions
+ */
 public class SearchOutgoingTransactionCommand extends Command {
     public SearchOutgoingTransactionCommand(TransactionManager transactionManager) {
         super("Search outgoing transaction", transactionManager);
@@ -52,6 +55,12 @@ public class SearchOutgoingTransactionCommand extends Command {
         }
     }
 
+    /**
+     * Search transaction by year
+     * @param scanner Read users selection
+     * @param type Incoming or outgoing transaction
+     * @return Total for the user entered year
+     */
     private float searchByYear(Scanner scanner, TransactionType type) {
         System.out.println("Enter the year");
         int year = 0;

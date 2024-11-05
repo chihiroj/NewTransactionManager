@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * Command only to use generics in application
+ */
 public class UseGenericsCommand extends Command {
 
     public UseGenericsCommand(TransactionManager transactionManager) {

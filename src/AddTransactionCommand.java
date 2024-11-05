@@ -3,6 +3,9 @@ import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Command to add a new transaction
+ */
 public class AddTransactionCommand extends Command{
 
     public AddTransactionCommand(TransactionManager transactionManager) {

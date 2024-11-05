@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * Base class for all commands
+ */
 public abstract class Command {
    protected TransactionManager transactionManager;
    private String menuText;
@@ -9,6 +12,10 @@ public abstract class Command {
        this.transactionManager = transactionManager;
    }
 
+    /**
+     * Executes the command
+     * @param scanner
+     */
    public abstract void execute(Scanner scanner);
 
    public String getMenuText() {

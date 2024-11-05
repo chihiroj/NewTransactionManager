@@ -3,6 +3,9 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Base class for all menus
+ */
 public abstract class Menu {
     protected HashMap<Integer, Command> commands;
 
@@ -10,6 +13,9 @@ public abstract class Menu {
         commands = new HashMap<Integer, Command>();
     }
 
+    /**
+     * Prints all menu commands
+     */
     public void showMenu() {
         for (Map.Entry<Integer, Command> entry : commands.entrySet()) {
             Integer key = entry.getKey();
@@ -18,6 +24,10 @@ public abstract class Menu {
         }
     }
 
+    /**
+     * Lets user select from menu
+     * @param scanner Scanner object to use for reading input from user
+     */
     public void selectInMenu(Scanner scanner) {
         int selection;
 

@@ -1,3 +1,6 @@
+/**
+ * The main menu of the application, with all main commands
+ */
 public class MainMenu extends Menu{
 
     public MainMenu(TransactionManager transactionManager){

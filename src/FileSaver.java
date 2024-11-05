@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Used to save transactions to file
+ */
 public class FileSaver implements TransactionSaver {
 
     @Override
@@ -58,6 +61,11 @@ public class FileSaver implements TransactionSaver {
         return transactionsFromFile;
     }
 
+    /**
+     * Reads a transaction from file
+     * @param bufferedReader The reader object to use to read from file
+     * @return A read transaction
+     */
     private Transaction readTransactionFromFile(BufferedReader bufferedReader) throws IOException {
         UUID id = UUID.fromString(bufferedReader.readLine());
         float amount = Float.parseFloat(bufferedReader.readLine());
@@ -70,6 +78,10 @@ public class FileSaver implements TransactionSaver {
         return transaction;
     }
 
+    /**
+     * Resets the save file to zero.
+     * @param fileName
+     */
     private void resetFile(String fileName) {
         try {
             FileWriter fileWriter = new FileWriter(fileName, false);
@@ -80,6 +92,11 @@ public class FileSaver implements TransactionSaver {
         }
     }
 
+    /**
+     * Adds a new transaction to file
+     * @param transaction The transaction to save
+     * @param fileName The name of the save file
+     */
     private void addNewTransactionToFile(Transaction transaction, String fileName) {
         try {
             FileWriter fileWriter = new FileWriter(fileName, true);
@@ -96,6 +113,11 @@ public class FileSaver implements TransactionSaver {
         }
     }
 
+    /**
+     * Creates a new save file
+     * @param fileName The name of the save file to create
+     * @return The created save file
+     */
     private File createNewFile(String fileName) {
         File file = new File(fileName);
         try {

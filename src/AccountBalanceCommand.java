@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * Command to display account balance
+ */
 public class AccountBalanceCommand extends Command {
     public AccountBalanceCommand(TransactionManager transactionManager) {
         super("Account Balance", transactionManager);

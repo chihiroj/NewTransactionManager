@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * Keeps track of all transactions
+ */
 public class TransactionManager {
     private ArrayList<Transaction> transactions;
     private float accountBalance;
