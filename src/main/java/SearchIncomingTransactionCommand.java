@@ -42,6 +42,9 @@ public class SearchIncomingTransactionCommand extends Command {
             } else if (selection == 2) {
                 total = searchByMonth(scanner, TransactionType.INCOMING);
                 System.out.println("Total is " + total + "kr.");
+            }    else if (selection == 3) {
+                    total = searchByWeek(scanner, TransactionType.OUTGOING);
+                    System.out.println("Total is " + total + "kr.");
             } else if (selection == 4) {
                 total = searchByDay(scanner, TransactionType.INCOMING);
                 System.out.println("Total is " + total + "kr.");
